@@ -1,0 +1,12 @@
+<div class="ret-calc-container">
+  <form (submit)="onSubmit($event)" method="post">
+    <fieldset class="ret-calc-inputs">
+      <legend>Retirement Calculator</legend>
+      <input name="current-age" type="text" placeholder="Current Age" />
+      <input name="account-balance" type="text" placeholder="Account Balance" />
+      <input name="annual-income" type="text" placeholder="Annual Income" />
+      <input name="savings-rate" type="text" placeholder="Savings Rate" />
+      <button type="submit">Calculate</button>
+    </fieldset>
+  </form>
+</div>
