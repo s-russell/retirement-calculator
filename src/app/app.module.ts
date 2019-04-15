@@ -7,6 +7,8 @@ import { LoginComponent } from "./views/login/login.component";
 import { RetcalcComponent } from "./views/retcalc/retcalc.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { MaterialModule } from "./material.module";
+import { FormsModule } from "@angular/forms";
+import { ServiceModule } from "./services/service.module";
 
 @NgModule({
   declarations: [
@@ -17,11 +19,12 @@ import { MaterialModule } from "./material.module";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ServiceModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

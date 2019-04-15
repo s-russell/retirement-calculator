@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
     const user = lookupUser(req.body);
     if (user) {
       const token = jwt.sign(
-        { data: user.username, expiresIn: "1h" },
+        { data: user.username, expiresIn: "1h", id: user.id },
         APP_SECRET
       );
       delete user.password;
@@ -29,6 +29,14 @@ module.exports = function(req, res, next) {
       token = token.substring(7);
       try {
         jwt.verify(token, APP_SECRET);
+        if (req.url === "/api/balance" && req.method === "GET") {
+          const { data } = jwt.decode(token);
+          const user = db().user.find(u => u.username === data);
+          const balance = db().balance.find(b => b.id === user.id);
+          res.json(balance);
+          res.end();
+          return;
+        }
         next();
         return;
       } catch (err) {

@@ -1,18 +1,27 @@
 <div class="login-container">
   <mat-card>
-    <mat-card-content class="login-inputs">
-      <mat-form-field>
-        <input name="username" type="text" placeholder="username" matInput />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          name="password"
-          type="password"
-          placeholder="password"
-          matInput
-        />
-      </mat-form-field>
-      <button mat-raised-button type="submit" color="accent">Login</button>
+    <mat-card-content>
+      <form (submit)="this.onSubmit($event)" class="login-inputs">
+        <mat-form-field>
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            matInput
+            [(ngModel)]="this.username"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            [(ngModel)]="this.password"
+            matInput
+          />
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="accent">Login</button>
+      </form>
     </mat-card-content>
   </mat-card>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { UserService } from "src/app/services/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -6,8 +8,15 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent {
+  private username: string = "";
+  private password: string = "";
+
+  constructor(private userSvc: UserService, private router: Router) {}
+
   onSubmit(evt) {
     evt.preventDefault();
-    console.log({ evt });
+    this.userSvc
+      .login(this.username, this.password)
+      .subscribe(_ => this.router.navigateByUrl("/calc"));
   }
 }
