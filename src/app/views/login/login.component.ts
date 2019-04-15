@@ -13,10 +13,9 @@ export class LoginComponent {
 
   constructor(private userSvc: UserService, private router: Router) {}
 
-  onSubmit(evt) {
+  async onSubmit(evt) {
     evt.preventDefault();
-    this.userSvc
-      .login(this.username, this.password)
-      .subscribe(_ => this.router.navigateByUrl("/calc"));
+    await this.userSvc.login(this.username, this.password);
+    this.router.navigateByUrl("/calc");
   }
 }

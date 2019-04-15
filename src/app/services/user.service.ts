@@ -1,7 +1,4 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { ApiRequestService } from "./api-request.service";
 
@@ -29,20 +26,15 @@ export class UserService {
     this.user = null;
   }
 
-  public login(username, password): Observable<UserPayload> {
-    const loginCall = this.api.sendRequest<UserPayload>(
-      "post",
-      `${environment.backendUrl}/api/login`,
-      {
+  async login(username, password) {
+    const { user, token } = await this.api
+      .sendRequest<UserPayload>("post", `${environment.backendUrl}/api/login`, {
         username,
         password
-      }
-    );
-    loginCall.subscribe(userPayload => {
-      console.log("recieved payload:", userPayload);
-      this.api.token = userPayload.token;
-      this.user = userPayload.user;
-    });
-    return loginCall;
+      })
+      .toPromise();
+    this.api.token = token;
+    this.user = user;
+    return user;
   }
 }

@@ -1,7 +1,9 @@
 <div class="ret-calc-container">
   <mat-card>
     <mat-card-title id="calc-title">Financial Information</mat-card-title>
-    <mat-card-subtitle>(Current Balance: $17)</mat-card-subtitle>
+    <mat-card-subtitle id="current-balance"
+      >(Current Balance: ${{ this.balance }})</mat-card-subtitle
+    >
     <mat-card-content class="ret-calc-inputs">
       <mat-form-field>
         <input

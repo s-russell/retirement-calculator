@@ -19,6 +19,6 @@ Then(
   "The retirement calculator is prepopulated with my account info",
   async function() {
     const observedBalance = await this.calculatorPage.getAccountBalance();
-    expect(observedBalance).to.equal("10245.10");
+    expect(observedBalance).to.contain("10245.10");
   }
 );

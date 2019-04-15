@@ -1,22 +1,21 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { User, UserService } from "./user.service";
 import { ApiRequestService } from "./api-request.service";
 import { environment } from "src/environments/environment";
 
+export type Balance = {
+  dollars: number;
+  cents: number;
+};
 @Injectable({
   providedIn: "root"
 })
 export class BalanceService {
-  constructor(private api: ApiRequestService, private userSvc: UserService) {}
+  constructor(private api: ApiRequestService) {}
 
-  public getBalanceForUser(): any {
-    const balanceCall = this.api.sendRequest<{
-      id: Number;
-      dollars: Number;
-      cents: Number;
-    }>("GET", `${environment.backendUrl}/api/balance`);
-    balanceCall.subscribe(bal => console.log("looked up balance:", bal));
-    return balanceCall;
+  getUserBalance() {
+    return this.api.sendRequest<Balance>(
+      "GET",
+      `${environment.backendUrl}/api/balance`
+    );
   }
 }

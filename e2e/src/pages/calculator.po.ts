@@ -8,6 +8,6 @@ export class CaculatorPage {
   }
 
   getAccountBalance() {
-    return element(by.name("account-balance")).getAttribute("value");
+    return element(by.id("current-balance")).getText();
   }
 }

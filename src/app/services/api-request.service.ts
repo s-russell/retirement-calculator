@@ -9,17 +9,19 @@ import { catchError } from "rxjs/operators";
 export class ApiRequestService {
   private _token: string;
   set token(newVal) {
+    console.log("setting api token to:", newVal);
     this._token = newVal;
   }
 
   constructor(private http: HttpClient) {}
 
   public sendRequest<T>(verb: string, url: string, body?: any): Observable<T> {
+    console.log("sending request to " + url);
     return this.http
       .request<T>(verb, url, {
         body,
         headers: new HttpHeaders({
-          bearer: this._token || ""
+          authorization: `Bearer ${this._token}`
         })
       })
       .pipe(

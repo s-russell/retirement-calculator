@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { BalanceService } from "src/app/services/balance.service";
-import { UserService } from "src/app/services/user.service";
+import { BalanceService, Balance } from "src/app/services/balance.service";
 
 @Component({
   selector: "app-retcalc",
@@ -8,12 +7,17 @@ import { UserService } from "src/app/services/user.service";
   styleUrls: ["./retcalc.component.scss"]
 })
 export class RetcalcComponent {
-  constructor(
-    private userSvc: UserService,
-    private balanceSvc: BalanceService
-  ) {}
+  private userBalance: Balance = { dollars: 0, cents: 0 };
 
-  getUserBalance() {
-    return "17";
+  get balance() {
+    return `${this.userBalance.dollars}.${(this.userBalance.cents < 10
+      ? "0"
+      : "") + this.userBalance.cents}`;
+  }
+
+  constructor(private balanceSvc: BalanceService) {
+    this.balanceSvc
+      .getUserBalance()
+      .subscribe(balance => (this.userBalance = balance));
   }
 }
