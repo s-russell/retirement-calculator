@@ -9,7 +9,6 @@ import { catchError } from "rxjs/operators";
 export class ApiRequestService {
   private _token: string;
   set token(newVal) {
-    console.log("setting api token to:", newVal);
     this._token = newVal;
   }
 

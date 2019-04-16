@@ -5,6 +5,10 @@ export class LoginPage {
     return browser.get("/login");
   }
 
+  async isVisible() {
+    return await element(by.buttonText("Login")).isPresent();
+  }
+
   async login(username: string, password: string) {
     await element(by.name("username")).sendKeys(username);
     await element(by.name("password")).sendKeys(password);

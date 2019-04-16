@@ -1,3 +1,4 @@
+@Ignore
 Feature: Validate Client Information
 
     Business Rules:

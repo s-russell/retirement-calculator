@@ -1,7 +1,15 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header-container">
   <mat-toolbar-row>
     <h1>
       My Retirement Calculator
     </h1>
+    <button
+      mat-button
+      class="logout-button"
+      *ngIf="this.userSvc.user"
+      (click)="this.logout()"
+    >
+      Logout
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>

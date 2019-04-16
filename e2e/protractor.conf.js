@@ -12,7 +12,8 @@ exports.config = {
   framework: "custom",
   frameworkPath: require.resolve("protractor-cucumber-framework"),
   cucumberOpts: {
-    require: ["./src/hooks.ts", "./src/steps/**/*.steps.ts"]
+    require: ["./src/hooks.ts", "./src/steps/**/*.steps.ts"],
+    tags: ["~@Ignore"]
   },
   onPrepare() {
     require("ts-node").register({

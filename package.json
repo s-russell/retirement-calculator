@@ -28,6 +28,7 @@
     "chai": "^4.2.0",
     "core-js": "^2.5.4",
     "cucumber": "^5.1.0",
+    "material-design-icons": "^3.0.1",
     "protractor-cucumber-framework": "^6.1.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
