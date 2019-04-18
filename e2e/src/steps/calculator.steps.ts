@@ -10,7 +10,7 @@ When("the client age validator runs", async function() {
 });
 
 Then(/the client validation (passes|fails)./, async function(result: string) {
-  expect(
-    await this.calculatorPage.errorsPresent()
-  ).to.be[result === "passes" ? "false" : "true"];
+  const valid = result === "passes";
+
+  expect(await this.calculatorPage.isValid()).to.be[valid ? "true" : "false"];
 });

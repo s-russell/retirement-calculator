@@ -1,3 +1,4 @@
+@Ignore
 Feature: Validate Client Information
 
     Business Rules:
@@ -11,13 +12,11 @@ Feature: Validate Client Information
         Given I go to the login page
         And I log in successfully
 
-    @AdHoc
     Scenario: The client is old enough to calculate amount for retirement
         Given the client's current age is 18
         When the client age validator runs
         Then the client validation passes.
 
-    @AdHoc
     Scenario: The client is too young to calculate their amount for retirement
         Given the client's current age is 17
         When the client age validator runs

@@ -28,8 +28,9 @@ export class CaculatorPage {
     await element(by.id("calc-title")).click();
   }
 
-  async errorsPresent() {
-    return await element(by.id("error-indicator")).isPresent();
+  isValid() {
+    //TODO: figure out how to check of form is valid
+    return true;
   }
 
   async logout() {
