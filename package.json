@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e --webdriver-update=false",
     "adhoc": "ng e2e --webdriver-update=false --protractorConfig=e2e/protractor.conf.adhoc.js",
-    "json": "json-server ./backend/data.js -p 3500 -m ./backend/authMiddleware.js"
+    "json": "json-server ./backend/data.js -p 3500 -m ./backend/backendStubMiddleware.js"
   },
   "private": true,
   "dependencies": {

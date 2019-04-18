@@ -7,7 +7,7 @@ import { LoginComponent } from "./views/login/login.component";
 import { RetcalcComponent } from "./views/retcalc/retcalc.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { MaterialModule } from "./material.module";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ServiceModule } from "./services/service.module";
 
 @NgModule({
@@ -20,6 +20,7 @@ import { ServiceModule } from "./services/service.module";
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     ServiceModule,
     AppRoutingModule,
     BrowserAnimationsModule,

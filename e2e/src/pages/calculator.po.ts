@@ -17,6 +17,21 @@ export class CaculatorPage {
     return element(by.id("current-balance")).getText();
   }
 
+  async setCurrentAge(age: number) {
+    const ageInput = by.name("currentAge");
+    await element(ageInput).sendKeys(age);
+  }
+
+  async validateInput() {
+    // clicking the title of the retirement calculator
+    // will blur the current input, initiating validation
+    await element(by.id("calc-title")).click();
+  }
+
+  async errorsPresent() {
+    return await element(by.id("error-indicator")).isPresent();
+  }
+
   async logout() {
     await element(by.buttonText("Logout")).click();
   }

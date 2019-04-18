@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { BalanceService, Balance } from "src/app/services/balance.service";
 import { UserService } from "src/app/services/user.service";
+import { CalculatorInput } from "src/app/services/validators.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-retcalc",
@@ -10,6 +12,7 @@ import { UserService } from "src/app/services/user.service";
 export class RetcalcComponent {
   private userBalance: Balance = { dollars: 0, cents: 0 };
   private userDisplayName: String;
+  private calculatorInputForm: FormGroup;
 
   get balance() {
     return `${this.userBalance.dollars}.${(this.userBalance.cents < 10
@@ -19,7 +22,8 @@ export class RetcalcComponent {
 
   constructor(
     private userSvc: UserService,
-    private balanceSvc: BalanceService
+    private balanceSvc: BalanceService,
+    private formBuilder: FormBuilder
   ) {
     this.balanceSvc
       .getUserBalance()
@@ -27,5 +31,25 @@ export class RetcalcComponent {
 
     const { first, last } = this.userSvc.user;
     this.userDisplayName = `${first} ${last}`;
+    this.calculatorInputForm = formBuilder.group({
+      currentAge: [
+        null,
+        Validators.compose([Validators.required, Validators.min(18)])
+      ],
+      retirementAge: [
+        null,
+        Validators.compose([Validators.required, Validators.min(0)])
+      ],
+      annualIncome: [null, Validators.required],
+      savingsRate: [null, Validators.required]
+    });
   }
+
+  onSubmit(formValues: CalculatorInput) {
+    console.log({ formValues });
+  }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.calculatorInputForm.controls[controlName].hasError(errorName);
+  };
 }

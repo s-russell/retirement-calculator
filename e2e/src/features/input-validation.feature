@@ -1,4 +1,3 @@
-@Ignore
 Feature: Validate Client Information
 
     Business Rules:
@@ -8,13 +7,19 @@ Feature: Validate Client Information
     - client annual income must be greater than zero
     - client savings rate must be a positive whole number
 
+    Background: I am logged income
+        Given I go to the login page
+        And I log in successfully
+
+    @AdHoc
     Scenario: The client is old enough to calculate amount for retirement
-        Given the clients current age is 18
+        Given the client's current age is 18
         When the client age validator runs
         Then the client validation passes.
 
+    @AdHoc
     Scenario: The client is too young to calculate their amount for retirement
-        Given the clients current age is 17
+        Given the client's current age is 17
         When the client age validator runs
         Then the client validation fails.
 

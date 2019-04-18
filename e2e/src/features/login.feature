@@ -1,5 +1,4 @@
-
-@AdHoc
+@Login
 Feature: Logging In
 
     Business Rules
