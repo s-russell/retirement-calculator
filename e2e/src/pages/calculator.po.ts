@@ -1,4 +1,4 @@
-import { browser, by, element } from "protractor";
+import { browser, by, element, ElementHelper } from "protractor";
 
 export class CalculatorPage {
   navigateTo() {
@@ -17,9 +17,26 @@ export class CalculatorPage {
     return element(by.id("current-balance")).getText();
   }
 
+  private async setField(fieldName: string, val: number | string) {
+    const input = by.name(fieldName);
+    await element(input).clear();
+    await element(input).sendKeys(val);
+  }
+
   async setCurrentAge(age: number) {
-    const ageInput = by.name("currentAge");
-    await element(ageInput).sendKeys(age);
+    await this.setField("currentAge", age);
+  }
+
+  async setRetirementAge(age: number) {
+    await this.setField("retirementAge", age);
+  }
+
+  async setAnnualIncome(income: number) {
+    await this.setField("annualIncome", income);
+  }
+
+  async setSavingsRate(rate: number) {
+    await this.setField("savingsRate", rate);
   }
 
   async validateInput() {
@@ -28,9 +45,10 @@ export class CalculatorPage {
     await element(by.id("calc-title")).click();
   }
 
-  isValid() {
-    //TODO: figure out how to check of form is valid
-    return true;
+  async isValid() {
+    return await element(
+      by.buttonText("Calculate Retirement Balance")
+    ).isEnabled();
   }
 
   async logout() {

@@ -1,4 +1,3 @@
-@Ignore
 Feature: Validate Client Information
 
     Business Rules:
@@ -8,34 +7,37 @@ Feature: Validate Client Information
     - client annual income must be greater than zero
     - client savings rate must be a positive whole number
 
-    Background: I am logged income
+    Background: I am logged in
         Given I go to the login page
         And I log in successfully
 
     Scenario: The client is old enough to calculate amount for retirement
-        Given the client's current age is 18
-        When the client age validator runs
-        Then the client validation passes.
+        Given the default client
+        But the client's current age is 18
+        When the client information is validated
+        Then the client can calculate their retirement
 
     Scenario: The client is too young to calculate their amount for retirement
-        Given the client's current age is 17
-        When the client age validator runs
-        Then the client validation fails.
+        Given the default client
+        But the client's current age is 17
+        When the client information is validated
+        Then the client cannot calculate their retirement
 
+    @AdHoc
     Scenario Outline: Clients retirement age range
-        Given the clients retirement age is <Retirement Age>
-        When the client retirement age validator runs
-        Then the client validation <Result>.
+        Given the client's retirement age is <Retirement Age>
+        When the client information is validated
+        Then the client <Result> calculate their retirement
 
         Examples: Valid
             | Retirement Age | Result |
-            | 50             | passes |
-            | 80             | passes |
+            | 50             | can    |
+            | 80             | can    |
 
         Examples: Invalid
             | Retirement Age | Result |
-            | 49             | fails  |
-            | 81             | fails  |
+            | 49             | cannot |
+            | 81             | cannot |
 
     Scenario: The client income is valid
         Given the client has an annual income amount of $1.00

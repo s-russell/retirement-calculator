@@ -31,38 +31,46 @@
         </mat-form-field>
         <mat-form-field>
           <input
+            name="retirementAge"
             type="number"
             placeholder="Retirement Age"
             matInput
             [formControl]="calculatorInputForm.controls.retirementAge"
           />
-          <mat-error *ngIf="hasError('currentAge', 'required')"
-            >Current Age is required</mat-error
+          <mat-error *ngIf="hasError('retirementAge', 'required')"
+            >Retirement Age is required</mat-error
           >
         </mat-form-field>
         <mat-form-field>
           <input
+            name="annualIncome"
             type="text"
             placeholder="Annual Income"
             matInput
             [formControl]="calculatorInputForm.controls.annualIncome"
           />
-          <mat-error *ngIf="hasError('currentAge', 'required')"
-            >Current Age is required</mat-error
+          <mat-error *ngIf="hasError('annualIncome', 'required')"
+            >Annual income is required</mat-error
           >
         </mat-form-field>
         <mat-form-field>
           <input
+            name="savingsRate"
             type="text"
             placeholder="Savings Rate"
             matInput
             [formControl]="calculatorInputForm.controls.savingsRate"
           />
-          <mat-error *ngIf="hasError('currentAge', 'required')"
+          <mat-error *ngIf="hasError('savingsRate', 'required')"
             >Current Age is required</mat-error
           >
         </mat-form-field>
-        <button mat-raised-button type="submit" color="accent">
+        <button
+          mat-raised-button
+          type="submit"
+          color="accent"
+          [disabled]="!calculatorInputForm.valid"
+        >
           Calculate Retirement Balance
         </button>
       </mat-card-content>
