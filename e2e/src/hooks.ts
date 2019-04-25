@@ -1,11 +1,11 @@
-import { Before, BeforeAll } from "cucumber";
+import { Before } from "cucumber";
 import { LoginPage } from "./pages/login.po";
-import { CaculatorPage } from "./pages/calculator.po";
+import { CalculatorPage } from "./pages/calculator.po";
 
 //attach page objects to world
 Before(function() {
   this.loginPage = new LoginPage();
-  this.calculatorPage = new CaculatorPage();
+  this.calculatorPage = new CalculatorPage();
 });
 
 //set up credentials

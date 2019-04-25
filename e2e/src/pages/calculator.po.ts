@@ -1,6 +1,6 @@
 import { browser, by, element } from "protractor";
 
-export class CaculatorPage {
+export class CalculatorPage {
   navigateTo() {
     return browser.get("/calc");
   }
